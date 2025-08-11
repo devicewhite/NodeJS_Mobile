@@ -5,8 +5,8 @@ android {
     namespace 'org.mobile.app' // use seu namespace real
     compileSdk 34
     
-    #ndkVersion '27.1.12297006'
-    #ndkPath '/data/data/com.termux/files/usr/opt/android-ndk-r27b'
+    // ndkVersion '27.1.12297006'
+    // ndkPath '/data/data/com.termux/files/usr/opt/android-ndk-r27b'
     
     defaultConfig {
         minSdk 25
