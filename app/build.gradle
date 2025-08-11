@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+android {
+    namespace 'org.mobile.app' // use seu namespace real
+    compileSdk 34
+    
+    #ndkVersion '27.1.12297006'
+    #ndkPath '/data/data/com.termux/files/usr/opt/android-ndk-r27b'
+    
+    defaultConfig {
+        minSdk 25
+        targetSdk 35
+        // applicationId não é usado em libs
+        // versionCode e versionName também não são obrigatórios
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // geralmente você quer distribuir a lib não minificada
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding false
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // Método 100% compatível com Android Gradle Plugin 8+
+                def aar = file("$buildDir/outputs/aar/${project.name}-release.aar")
+                artifact(aar)
+
+                groupId = 'com.github.devicewhite'
+                artifactId = 'NodeJS_Mobile'
+                version = '1.0.0'
+            }
+        }
+    }
+
+    tasks.named("publishReleasePublicationToMavenLocal") {
+        dependsOn tasks.named("bundleReleaseAar")
+    }
+}
