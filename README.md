@@ -19,6 +19,8 @@ dependencies {
 }
 ```
 
+[![](https://jitpack.io/v/devicewhite/NodeJS_Mobile.svg)](https://jitpack.io/#devicewhite/NodeJS_Mobile)
+
 ---
 
 ## Uso
